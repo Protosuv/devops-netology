@@ -6,14 +6,10 @@ bash_command = ["cd ~/PycharmProjects/netology.devops/devops-netology", "git sta
 result_os = os.popen(' && '.join(bash_command)).read()
 # print(result_os)
 is_change = False
-# for result in result_os.split('\n'):
+modified_count = 0
 for result in result_os.splitlines():
-    # print(result)
-    if result.find('modified') != -1:
-        prepare_result = result.replace('\tmodified:   ', '')
-        print(prepare_result)
-        break
-    elif result.find('изменено') != -1:
+    if result.find('изменено') != -1:
         prepare_result = result.replace('\tизменено:   ', '')
-        print(prepare_result)
-        break
+        modified_count += 1
+        print(f'Измененён: {prepare_result}')
+print(f'Всего изменено: {modified_count}')
