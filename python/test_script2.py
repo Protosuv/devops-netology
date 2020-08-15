@@ -2,6 +2,7 @@
 
 import os
 import argparse
+# print(type(argparse))
 parser = argparse.ArgumentParser(description='Show status of files in Git directory')
 parser.add_argument(
     '--indir',
