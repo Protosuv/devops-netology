@@ -1,2 +1,4 @@
 .idea/
 terraform/
+/python/dns_list.csv
+/python/sample.csv
