@@ -4,6 +4,8 @@ import os
 import socket
 import csv
 import json
+import yaml
+
 my_dir = os.getcwd()
 dns_list = os.path.join(my_dir, 'dns_list.csv')
 # print(dns_list)
@@ -39,3 +41,7 @@ with open('dns_list.json', 'w') as json_file:
     for key, value in our_hosts.items():
         json.dump({key: value}, json_file)
 json_file.close()
+with open('dns_list.yml', 'w') as yaml_file:
+    for key, value in our_hosts.items():
+        yaml.dump({key: value}, yaml_file)
+yaml_file.close()
