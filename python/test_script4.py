@@ -25,14 +25,17 @@ with open(dns_list, newline='') as csv_file:
         old_ip = our_hosts_old[dns]
         if new_ip != old_ip:
             print(f'[ERROR] <{dns}> IP mismatch: <{old_ip}> <{new_ip}>')
-print(our_hosts)
+# print(our_hosts)
 # print("----")
 # print(our_hosts_old)
+# save dict on CSV file
 with open(dns_list, "w") as a_file:
     writer = csv.writer(a_file)
     for key, value in our_hosts.items():
         writer.writerow([key, value])
 a_file.close()
-# with open('dns_list.json', 'w') as json_file:
-    json.dump(to_json, json_file)
-# to_json = {}
+# save dict on JSON file
+with open('dns_list.json', 'w') as json_file:
+    for key, value in our_hosts.items():
+        json.dump({key: value}, json_file)
+json_file.close()
