@@ -1,0 +1,15 @@
+FROM amazoncorretto:latest
+
+RUN yum -y update
+RUN yum -y install unzip wget
+RUN cd /var/opt && mkdir jenkins
+
+ADD https://get.jenkins.io/war-stable/2.249.2/jenkins.war /var/opt/jenkins
+
+WORKDIR /var/opt/jenkins
+
+ENTRYPOINT ["/usr/bin/java"]
+
+CMD ["-jar","jenkins.war"]
+
+EXPOSE 8080
