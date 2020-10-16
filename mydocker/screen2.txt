@@ -1,0 +1,53 @@
+Running from: /var/opt/jenkins/jenkins.war
+webroot: $user.home/.jenkins
+2020-10-16 10:36:54.588+0000 [id=1]	INFO	org.eclipse.jetty.util.log.Log#initialized: Logging initialized @1424ms to org.eclipse.jetty.util.log.JavaUtilLog
+2020-10-16 10:36:54.726+0000 [id=1]	INFO	winstone.Logger#logInternal: Beginning extraction from war file
+2020-10-16 10:36:56.981+0000 [id=1]	WARNING	o.e.j.s.handler.ContextHandler#setContextPath: Empty contextPath
+2020-10-16 10:36:57.084+0000 [id=1]	INFO	org.eclipse.jetty.server.Server#doStart: jetty-9.4.30.v20200611; built: 2020-06-11T12:34:51.929Z; git: 271836e4c1f4612f12b7bb13ef5a92a927634b0d; jvm 11.0.8+10-post-Ubuntu-0ubuntu120.04
+2020-10-16 10:36:57.697+0000 [id=1]	INFO	o.e.j.w.StandardDescriptorProcessor#visitServlet: NO JSP Support for /, did not find org.eclipse.jetty.jsp.JettyJspServlet
+2020-10-16 10:36:57.782+0000 [id=1]	INFO	o.e.j.s.s.DefaultSessionIdManager#doStart: DefaultSessionIdManager workerName=node0
+2020-10-16 10:36:57.782+0000 [id=1]	INFO	o.e.j.s.s.DefaultSessionIdManager#doStart: No SessionScavenger set, using defaults
+2020-10-16 10:36:57.789+0000 [id=1]	INFO	o.e.j.server.session.HouseKeeper#startScavenging: node0 Scavenging every 660000ms
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.thoughtworks.xstream.core.util.Fields (file:/root/.jenkins/war/WEB-INF/lib/xstream-1.4.7-jenkins-1.jar) to field java.util.TreeMap.comparator
+WARNING: Please consider reporting this to the maintainers of com.thoughtworks.xstream.core.util.Fields
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-10-16 10:36:58.631+0000 [id=1]	INFO	hudson.WebAppMain#contextInitialized: Jenkins home directory: /root/.jenkins found at: $user.home/.jenkins
+2020-10-16 10:36:59.172+0000 [id=1]	INFO	o.e.j.s.handler.ContextHandler#doStart: Started w.@58294867{Jenkins v2.249.2,/,file:///root/.jenkins/war/,AVAILABLE}{/root/.jenkins/war}
+2020-10-16 10:36:59.250+0000 [id=1]	INFO	o.e.j.server.AbstractConnector#doStart: Started ServerConnector@54504ecd{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2020-10-16 10:36:59.250+0000 [id=1]	INFO	org.eclipse.jetty.server.Server#doStart: Started @6088ms
+2020-10-16 10:36:59.259+0000 [id=22]	INFO	winstone.Logger#logInternal: Winstone Servlet Engine running: controlPort=disabled
+2020-10-16 10:36:59.913+0000 [id=29]	INFO	jenkins.InitReactorRunner$1#onAttained: Started initialization
+2020-10-16 10:36:59.958+0000 [id=30]	INFO	jenkins.InitReactorRunner$1#onAttained: Listed all plugins
+2020-10-16 10:37:02.506+0000 [id=28]	INFO	jenkins.InitReactorRunner$1#onAttained: Prepared all plugins
+2020-10-16 10:37:02.521+0000 [id=29]	INFO	jenkins.InitReactorRunner$1#onAttained: Started all plugins
+2020-10-16 10:37:02.540+0000 [id=30]	INFO	jenkins.InitReactorRunner$1#onAttained: Augmented all extensions
+2020-10-16 10:37:03.607+0000 [id=29]	INFO	jenkins.InitReactorRunner$1#onAttained: System config loaded
+2020-10-16 10:37:03.608+0000 [id=29]	INFO	jenkins.InitReactorRunner$1#onAttained: System config adapted
+2020-10-16 10:37:03.608+0000 [id=29]	INFO	jenkins.InitReactorRunner$1#onAttained: Loaded all jobs
+2020-10-16 10:37:03.610+0000 [id=28]	INFO	jenkins.InitReactorRunner$1#onAttained: Configuration for all jobs updated
+2020-10-16 10:37:03.672+0000 [id=43]	INFO	hudson.model.AsyncPeriodicWork#lambda$doRun$0: Started Download metadata
+2020-10-16 10:37:03.718+0000 [id=43]	INFO	hudson.util.Retrier#start: Attempt #1 to do the action check updates server
+2020-10-16 10:37:05.409+0000 [id=27]	INFO	o.s.c.s.AbstractApplicationContext#prepareRefresh: Refreshing org.springframework.web.context.support.StaticWebApplicationContext@45b4b301: display name [Root WebApplicationContext]; startup date [Fri Oct 16 10:37:05 GMT 2020]; root of context hierarchy
+2020-10-16 10:37:05.412+0000 [id=27]	INFO	o.s.c.s.AbstractApplicationContext#obtainFreshBeanFactory: Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@45b4b301]: org.springframework.beans.factory.support.DefaultListableBeanFactory@cec31da
+2020-10-16 10:37:05.429+0000 [id=27]	INFO	o.s.b.f.s.DefaultListableBeanFactory#preInstantiateSingletons: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@cec31da: defining beans [authenticationManager]; root of factory hierarchy
+2020-10-16 10:37:05.851+0000 [id=27]	INFO	o.s.c.s.AbstractApplicationContext#prepareRefresh: Refreshing org.springframework.web.context.support.StaticWebApplicationContext@4a282a50: display name [Root WebApplicationContext]; startup date [Fri Oct 16 10:37:05 GMT 2020]; root of context hierarchy
+2020-10-16 10:37:05.852+0000 [id=27]	INFO	o.s.c.s.AbstractApplicationContext#obtainFreshBeanFactory: Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@4a282a50]: org.springframework.beans.factory.support.DefaultListableBeanFactory@71353510
+2020-10-16 10:37:05.853+0000 [id=27]	INFO	o.s.b.f.s.DefaultListableBeanFactory#preInstantiateSingletons: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@71353510: defining beans [filter,legacy]; root of factory hierarchy
+2020-10-16 10:37:06.188+0000 [id=27]	INFO	jenkins.install.SetupWizard#init: 
+
+*************************************************************
+*************************************************************
+*************************************************************
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+68807d686907432fa0ef3a0c3584f3d8
+
+This may also be found at: /root/.jenkins/secrets/initialAdminPassword
+
+*************************************************************
+*************************************************************
+*************************************************************
