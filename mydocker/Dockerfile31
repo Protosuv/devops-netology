@@ -1,0 +1,14 @@
+FROM archlinux:latest
+MAINTAINER Martijn Pepping <martijn.pepping@automiq.nl>
+
+RUN pacman -Sy && \
+    pacman -S --noconfirm unzip wget && \
+    pacman -S --noconfirm openssl python3 texinfo && \
+    cd /tmp && mkdir ponysay && \
+    wget -O ponysay.zip http://github.com/erkin/ponysay/archive/master.zip && \
+    unzip ponysay.zip && cd ponysay-master && \
+    ./setup.py install --freedom=partial && \
+    cd /tmp/ponysay && \
+    rm -rf ponysay.zip /ponysay-master /usr/lib/python*/__pycache__/*.pyc /var/cache/apk/*
+
+entrypoint ["/usr/bin/ponysay"]

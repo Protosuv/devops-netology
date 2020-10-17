@@ -1,0 +1,14 @@
+FROM node:latest
+
+RUN apt -y update
+ENV SIMPLICITE_URL http://0.0.0.0:3000/
+
+RUN cd /tmp/ && git clone https://github.com/simplicitesoftware/nodejs-demo.git && \
+cd nodejs-demo && npm install
+WORKDIR /tmp/nodejs-demo
+
+ENTRYPOINT ["/usr/local/bin/npm"]
+
+CMD ["start"]
+
+EXPOSE 3000

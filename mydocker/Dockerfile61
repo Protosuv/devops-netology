@@ -1,0 +1,16 @@
+FROM node:latest
+
+RUN apt -y update
+
+ENV VCAP_APP_HOST "0.0.0.0"
+ENV VCAP_APP_PORT "3000"
+
+RUN cd /tmp/ && git clone https://github.com/simplicitesoftware/nodejs-demo.git && \
+cd nodejs-demo && npm install
+WORKDIR /tmp/nodejs-demo
+
+ENTRYPOINT ["/usr/local/bin/npm"]
+
+CMD ["start"]
+
+EXPOSE 3000
