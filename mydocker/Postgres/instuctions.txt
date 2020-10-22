@@ -1,0 +1,25 @@
+Pgadmin
+docker run -p 80:80 \
+    -e 'PGADMIN_DEFAULT_EMAIL=user@domain.com' \
+    -e 'PGADMIN_DEFAULT_PASSWORD=SuperSecret' \
+    -e 'PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION=True' \
+    -e 'PGADMIN_CONFIG_LOGIN_BANNER="Authorised users only!"' \
+    -e 'PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=10' \
+    -d dpage/pgadmin4
+
+docker run -d \
+	--name some-postgres \
+	-e POSTGRES_PASSWORD=mysecretpassword \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
+	-v /custom/mount:/var/lib/postgresql/data \
+	postgres
+
+/docker-entrypoint-initdb.d/init-user-db.sh:
+#!/bin/bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+	CREATE USER docker;
+	CREATE DATABASE docker;
+	GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
+EOSQL
