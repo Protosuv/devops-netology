@@ -24,4 +24,59 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 	GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
 EOSQL
 
-docker exec -it -u postgres postgres_postgres_1 psql
+docker exec -it -u postgres postgres_postgres_1 psql -d base_name
+
+CREATE TABLE orders(
+   id  SERIAL PRIMARY KEY,
+   name           TEXT      NOT NULL,
+   cost            INT       NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL
+);
+CREATE TABLE orders(
+   id  SERIAL PRIMARY KEY,
+   name           TEXT      NOT NULL,
+   cost            INT       NOT NULL
+   );
+CREATE TABLE clients(
+   id  SERIAL PRIMARY KEY,
+   surname           TEXT      NOT NULL,
+   country           TEXT       NOT NULL,
+   orders             INT       REFERENCES orders (id)
+   );
+SELECT L.*, S.Description FROM Log as L LEFT JOIN Stations as S ON L.id_station = S.id_station WHERE S.id_station = 5
+CREATE TABLE clients(
+    id SERIAL PRIMARY KEY,
+    surname TEXT NOT NULL,
+    country TEXT,
+    orders_id INT NOT NULL,
+    FOREIGN KEY(orders_id) REFERENCES orders(id)
+);
+UPDATE
+    clients c
+SET
+    orders_id = o.id
+FROM
+    orders o
+WHERE
+    o.name = 'Книга'
+    AND c.surname = 'Иванов Иван Иванович';
+UPDATE
+    clients c
+SET
+    orders_id
+FROM
+    orders o
+WHERE
+    o.id = 5
+    AND c.id = 3;
+
+UPDATE
+    clients c
+SET
+    orders_id = o.id
+FROM
+    orders o
+WHERE
+    o.id = (SELECT id FROM orders WHERE name = 'Монитор')
+    AND c.id = (SELECT id FROM clients WHERE surname = 'Петров Петр Петрович');
