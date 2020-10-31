@@ -1,0 +1,29 @@
+version: "3"
+services:
+  mysql:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=netology_testdb
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+    - ./postgres_data:/var/lib/postgresql/data/
+    - ./postgres_backup:/tmp/postgres_backup/
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "80:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=protosuv@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin
+      - PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION=True
+      - PGADMIN_CONFIG_LOGIN_BANNER="Authorised users only!"
+      - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=0
+    volumes:
+    - ./pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
