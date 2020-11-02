@@ -9,6 +9,7 @@ services:
     volumes:
       - ./Mysql_data:/var/lib/mysql/
       - ./Mysql_backup:/tmp/mysql_backup/
+      - ./Mysql_conf:/etc/mysql/conf.d/
 
   phpmyadmin:
     image: phpmyadmin
