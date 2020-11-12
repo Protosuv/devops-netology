@@ -15,13 +15,13 @@
 # Use a descriptive name for your cluster:
 #
 cluster.name: netology-demo
-cluster.initial_master_nodes: node-1
+cluster.initial_master_nodes: netology-test
 #
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
 #
-node.name: node-1
+node.name: netology-test
 #
 # Add custom attributes to the node:
 #
