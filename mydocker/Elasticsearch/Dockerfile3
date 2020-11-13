@@ -8,4 +8,4 @@ RUN yum update && \
 
 ENTRYPOINT ["/bin/bash"]
 
-EXPOSE 9200 9300
+EXPOSE 9200 9300htop
