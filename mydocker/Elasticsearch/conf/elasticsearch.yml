@@ -36,6 +36,8 @@ path.data: /var/lib/elasticsearch
 # Path to log files:
 #
 path.logs: /var/log/elasticsearch
+
+path.repo: /usr/share/elasticsearch/snapshots
 #
 # ----------------------------------- Memory -----------------------------------
 #
