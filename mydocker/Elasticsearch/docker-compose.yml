@@ -1,28 +1,13 @@
 version: "3"
 services:
-  postgres:
-    image: postgres:13
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_HOST_AUTH_METHOD=trust
-      - PGDATA=/var/lib/postgresql/data/pgdata
+  elastic:
+    image: protosuv/netology-elastic:v1.1
+
     ports:
-      - "5432:5432"
+      - "9200:9200"
+      - "9300:9300"
     volumes:
-    - ./postgres_data:/var/lib/postgresql/data/
-    - ./postgres_backup:/tmp/postgres_backup/
-  pgadmin4:
-    image: dpage/pgadmin4:latest
-    ports:
-      - "80:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=protosuv@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin
-      - PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION=True
-      - PGADMIN_CONFIG_LOGIN_BANNER="Authorised users only!"
-      - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=0
-    volumes:
-    - ./pgadmin:/var/lib/pgadmin
-    depends_on:
-      - postgres
+#    - ./conf/:/tmp/conf/
+    - /var/log/elasticsearch:/var/log/elasticsearch
+    - /var/lib/elasticsearch:/var/lib/elasticsearch
+    - ./snapshots:/usr/share/elasticsearch/snapshots
