@@ -21,6 +21,8 @@ provider "aws" {
   owners = ["099720109477"] # Canonical
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_instance" "netology-test" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
@@ -28,4 +30,13 @@ resource "aws_instance" "netology-test" {
   tags = {
     Name = "Netology-test"
   }
+  instance_initiated_shutdown_behavior = "stop"
+
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_type = "gp2"
+    delete_on_termination = "false"
+    volume_size = 8
+  }
+
 }
