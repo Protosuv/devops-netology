@@ -35,12 +35,12 @@ module "ec2-instance" {
   name                   = "web"
   instance_count         = 1
 
-  ami                    = "data.aws_ami.ubuntu.id"
+  ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
-  key_name               = "user1"
+//  key_name               = "user1"
   monitoring             = true
-  vpc_security_group_ids = ["sg-12345678"]
-  subnet_id              = "subnet-eddcdzz4"
+  vpc_security_group_ids = ["sg-2e81ef1b"]
+  subnet_id              = "subnet-2844c477"
 
   tags = {
     Name = "Netology-test"
