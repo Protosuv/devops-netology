@@ -1,7 +1,7 @@
 # Самоконтроль выполнения задания
 
 1. Файл с `some_fact`находится в подпапке group_vars этого плейбука.
-2. Для запуск плейбука выполнялась команда:
+2. Для запуска плейбука выполнялась команда:
    `$ ansible-playbook playbook/site.yml -i playbook/inventory/test.yml`
 3. Для шифрования файла использовалась команда:
    `$ ansible-vault encrypt group_vars/el/examp.yml`
