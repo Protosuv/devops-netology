@@ -2,3 +2,10 @@
 terraform/
 /python/dns_list.csv
 /python/sample.csv
+go/pkg/
+mydocker/Mysql/mysqld.*
+/go/=
+/go/=2.10
+/mydocker/Mysql/mysqld*
+/myterraform/terraform12
+/go/test1
