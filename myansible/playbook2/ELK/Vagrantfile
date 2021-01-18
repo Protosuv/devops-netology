@@ -1,0 +1,73 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "elastic" do |elastic|
+
+    elastic.vm.box = "bento/ubuntu-20.04"
+
+    elastic.vm.network "private_network", ip: "192.168.10.21"
+
+    elastic.vm.hostname = "elastic"
+
+    elastic.vm.provider :virtualbox do |vb|
+
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+
+      end
+    elastic.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/my_pc.pub"
+    elastic.vm.provision "shell", inline: <<-SHELL
+
+      cat /home/vagrant/.ssh/my_pc.pub >> /home/vagrant/.ssh/authorized_keys
+      sudo echo "192.168.10.22 kibana" | sudo tee -a /etc/hosts
+
+      sudo echo "192.168.10.23 logstash" | sudo tee -a /etc/hosts
+
+      sudo timedatectl set-timezone Europe/Moscow
+
+      SHELL
+    end
+  
+    config.vm.define "kibana" do |kibana|
+
+      kibana.vm.box = "bento/ubuntu-20.04"
+  
+      kibana.vm.network "private_network", ip: "192.168.10.22"
+  
+      kibana.vm.hostname = "kibana"
+  
+      kibana.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/my_pc.pub"
+      kibana.vm.provision "shell", inline: <<-SHELL
+  
+         cat /home/vagrant/.ssh/my_pc.pub >> /home/vagrant/.ssh/authorized_keys
+         sudo echo "192.168.10.21 elastic" | sudo tee -a /etc/hosts
+         sudo echo "192.168.10.23 logstash" | sudo tee -a /etc/hosts
+  
+         sudo timedatectl set-timezone Europe/Moscow
+    
+      SHELL
+  
+      end
+     
+  
+  config.vm.define "logstash" do |logstash|
+  
+        logstash.vm.box = "bento/ubuntu-20.04"
+  
+        logstash.vm.network "private_network", ip: "192.168.10.23"
+  
+        logstash.vm.hostname = "logstash"
+  
+        logstash.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/my_pc.pub"
+        logstash.vm.provision "shell", inline: <<-SHELL
+  
+         cat /home/vagrant/.ssh/my_pc.pub >> /home/vagrant/.ssh/authorized_keys
+         sudo echo "192.168.10.21 elastic" | sudo tee -a /etc/hosts
+         sudo echo "192.168.10.22 kibana" | sudo tee -a /etc/hosts
+  
+         sudo timedatectl set-timezone Europe/Moscow
+  
+      SHELL
+  
+    end
+
+  end

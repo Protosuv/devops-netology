@@ -9,3 +9,4 @@ mydocker/Mysql/mysqld.*
 /mydocker/Mysql/mysqld*
 /myterraform/terraform12
 /go/test1
+mydocker/Postgres/postgres_data*
