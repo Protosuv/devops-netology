@@ -1,4 +1,11 @@
 ---
+  - name: Test hosts list
+    hosts: all
+    tasks:
+      - name: Get IP address target hosts
+        debug:
+          msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+        tags: ipaddr
   - name: Install Java
     hosts: all
     tasks:
@@ -129,10 +136,11 @@
         tags: kibana
   
   - name: Install Logstash
-    hosts: Logstash
+    hosts: logstash
     tasks:
       - name: Upload tar.gz Logstash from remote URL
         ansible.builtin.get_url:
+          # https://artifacts.elastic.co/downloads/logstash/logstash-7.10.2-linux-x86_64.tar.gz
           url: "https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}-linux-x86_64.tar.gz"
           dest: "/tmp/logstash-{{ logstash_version }}-linux-x86_64.tar.gz"
           mode: 0755
