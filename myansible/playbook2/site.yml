@@ -1,10 +1,12 @@
 ---
   - name: Test hosts list
-    hosts: all
+    hosts: elasticsearch
     tasks:
       - name: Get IP address target hosts
         debug:
-          msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+          # msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+          # msg: "{{ hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] }}"
+          msg: "{{ ansible_ssh_host }}"
         tags: ipaddr
   - name: Install Java
     hosts: all
@@ -89,6 +91,7 @@
           group: vagrant
           recurse: yes
         tags: elastic
+      
   - name: Install Kibana
     hosts: kibana
     tasks:
@@ -180,4 +183,11 @@
           owner: vagrant
           group: vagrant
           recurse: yes
+        tags: logstash
+      - name: Change ip address in logstash config
+        become: yes
+        ansible.builtin.replace:
+          path={{ logstash_home }}/config/logstash-sample.conf
+          regexp='^localhost'
+          replace='{{ ansible_ssh_host }}'
         tags: logstash
