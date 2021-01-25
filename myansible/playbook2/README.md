@@ -11,6 +11,7 @@
    - установка Logstash из архива .tar.gz на третью ВМ.
 5. Для того, чтобы запустить плейбук, нужно использовать команду находясь в корне проекта:  
    `ansible-playbook -i inventory/prod.yml site.yml`.
-6. Плейбук содержит теги: `java, elastic, kibana, skip_ansible_lint, logstash`.
+6. Плейбук содержит теги: `java, elastic, kibana, skip_ansible_lint, logstash, ipaddr`.
 7. Используются шаблоны jinja конфигурационных файлов при настройке ВМ. Шаблоны размещены в [папке](https://github.com/Protosuv/devops-netology/tree/master/myansible/playbook2/templates). 
-8. Архив Java размещается в папке `/files` проекта. Установка осуществляется из этого архива (вместо загрузки с сайта Oracle).  
+8. Архив Java размещается в папке `/files` проекта. Установка осуществляется из этого архива (вместо загрузки с сайта Oracle).
+9. В конфигурацию Logstash вносятся изменения из фактов о ВМ elasticsearch.  

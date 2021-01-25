@@ -6,7 +6,8 @@
         debug:
           # msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
           # msg: "{{ hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] }}"
-          msg: "{{ ansible_ssh_host }}"
+          # msg: "{{ ansible_ssh_host }}"
+          msg: "{{ ansible_eth1.ipv4.address }}"
         tags: ipaddr
   - name: Install Java
     hosts: all
@@ -189,5 +190,6 @@
         ansible.builtin.replace:
           path={{ logstash_home }}/config/logstash-sample.conf
           regexp='^localhost'
-          replace='{{ ansible_ssh_host }}'
-        tags: logstash
+          replace='{{ ansible_facts['ansible_eth1']['ipv4']['address'] }}'
+        # tags: logstash
+        tags: ipaddr
