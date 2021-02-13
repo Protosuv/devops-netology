@@ -3,12 +3,25 @@
     hosts: elasticsearch
     tasks:
       - name: Get IP address target hosts
-        debug:
+        ansible.builtin.debug:
           # msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
           # msg: "{{ hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] }}"
           # msg: "{{ ansible_ssh_host }}"
           msg: "{{ ansible_eth1.ipv4.address }}"
+          # var: "ansible_facts"
         tags: ipaddr
+      - name: Set facts for elasticsearch host
+        ansible.builtin.set_fact:
+          elastic_ip_addr: "{{ ansible_eth1.ipv4.address }}"
+          # one_fact: myelastic
+          # msg: "{{ elastic_ip_addr }}"
+          cacheable: yes
+      - name: Print variable
+        ansible.builtin.debug:
+          msg: "{{ elastic_ip_addr }}"
+        when: elastic_ip_addr is defined
+        tags: elastic
+
   - name: Install Java
     hosts: all
     tasks:
@@ -190,6 +203,6 @@
         ansible.builtin.replace:
           path={{ logstash_home }}/config/logstash-sample.conf
           regexp='^localhost'
-          replace='{{ ansible_facts['ansible_eth1']['ipv4']['address'] }}'
+          replace="{{ elastic_ip_addr }}"
         # tags: logstash
         tags: ipaddr
