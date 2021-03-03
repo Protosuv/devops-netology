@@ -1,0 +1,3 @@
+files/*
+ELK/.vagrant
+elastic_fact.yml
