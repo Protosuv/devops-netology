@@ -3,11 +3,16 @@
     hosts: all
     roles:
       - "java"
+    tags: Java, ELK
+
   - name: Install Elasticsearch
     hosts: elastic
     roles:
       - "elastic-role"
+    tags: Elasticsearch, ELK
+
   - name: Install Kibana
     hosts: kibana
     roles:
       - "kibana-role"
+    tags: Kibana, ELK 
